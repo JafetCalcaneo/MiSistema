@@ -1,5 +1,6 @@
 package Vistas;
 
+import Utilidades.ModeloTabla2;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,9 +9,11 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import Vistas.Producto;
+import javax.swing.table.TableModel;
+import Utilidades.JLabelRound;
 
 public class Ventana extends JFrame {
-    
+   
     public Ventana(){
          barraMenu();
         iniciarComponentes();
@@ -20,19 +23,24 @@ public class Ventana extends JFrame {
     }
     
     public void iniciarComponentes(){
+        
         panelPrincipal = new JPanel();
         panelPrincipal.setLayout(null);
-        panelPrincipal.setBounds(0,90,1500, 800 );
-        panelPrincipal.setBackground(Color.white);
+        panelPrincipal.setBounds(medidasPanel );
+        panelPrincipal.setBackground(new Color(255, 255, 255));
         this.add(panelPrincipal);
                    
         labelUsuario = new JLabel();
         labelUsuario.setBounds(600, 100, 300, 300);
         
-        usuario = new ImageIcon(getClass().getResource("/Recursos/usuario.jpg"));
-        icono = new ImageIcon(usuario.getImage().getScaledInstance(labelUsuario.getWidth(), labelUsuario.getHeight(),Image.SCALE_DEFAULT));
-        labelUsuario.setIcon(icono);
-        panelPrincipal.add(labelUsuario);
+        label = new JLabelRound();
+        label.setBounds(600, 100, 300, 300);
+               
+        
+        usuario = new ImageIcon(getClass().getResource("/Recursos/Lucia.jpeg"));
+        icono = new ImageIcon(usuario.getImage().getScaledInstance(label.getWidth(), label.getHeight(),Image.SCALE_DEFAULT));
+        label.setIcon(icono);
+        panelPrincipal.add(label);
         
         labelNombre = new JLabel("Nombre:");
         labelNombre.setBounds(550, 500, 180, 30);   
@@ -43,9 +51,10 @@ public class Ventana extends JFrame {
         labelCorreo = new JLabel("Correo:");
         labelCorreo.setBounds(780, 500, 180, 30);
         labelCorreo.setFont(new Font("Arial",1,20));
-        labelCorreo.setForeground(Color.white);
+        labelCorreo.setForeground(Color.BLACK);
         panelPrincipal.add(labelCorreo);
         
+         panelPuntero = panelPrincipal;
        /* labelEquis2 = new JLabel("Hey");
         labelEquis2.setBounds(240,10,30,30);
         equis = new ImageIcon(getClass().getResource("/Recursos/Equis.png"));
@@ -62,7 +71,7 @@ public class Ventana extends JFrame {
         panelOpciones.setBounds(0,0,290,900);
         panelOpciones.setBackground(new Color(224,255,255));
         panelOpciones.setVisible(false);
-        panelPrincipal.add(panelOpciones);
+        panelPuntero.add(panelOpciones);
         
         btnPerfil = new JButton("Perfil");
         btnPerfil.setBounds(20,60,250,45);
@@ -92,6 +101,8 @@ public class Ventana extends JFrame {
         icono = new ImageIcon(equis.getImage().getScaledInstance(btnEquis.getWidth(), btnEquis.getHeight(), Image.SCALE_DEFAULT));
         btnEquis.setIcon(icono);
         panelOpciones.add(btnEquis);
+        
+       
         
         x = 290;
         btnEquis.addActionListener(new ActionListener(){
@@ -125,7 +136,9 @@ public class Ventana extends JFrame {
         
           btnTienda.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-              //  panelProductos();
+                panelPuntero = panelTabla;
+                panelPrincipal.setVisible(false);
+                panelProductos();
            
                 
             }
@@ -198,134 +211,34 @@ public class Ventana extends JFrame {
                
     }
     
-  /*  private void panelProductos(){
+    private JPanel panelProductos(){
+        panelTabla = new JPanel();
+        panelTabla.setBounds(medidasPanel);
+        panelTabla.setBackground(Color.WHITE);
+        panelTabla.setLayout(null);
+        
+        
         labelUsuario.setVisible(false);
-        panelPrincipal.add(scroll);
+        labelNombre.setVisible(false);
+        labelCorreo.setVisible(false);
+        
+        miModelo = new ModeloTabla2();   
+        miTabla = new JTable(miModelo);
+        miTabla.setVisible(true);
+        
+        panelPrincipal.add(miTabla);
+        
+       panelTabla.add(new JScrollPane(miTabla));
+        panelPrincipal.setVisible(false);
+        this.add(panelTabla);
+        
+        return panelTabla;
+       
     }
     
-    private void construirTabla() {
-		
-		listaProductos=consultarListaProductos();
-		
-		ArrayList<String> titulosList=new ArrayList<>();
-		
-		titulosList.add("Nombre");
-		titulosList.add("Precio");
-		titulosList.add("Stock");
-		titulosList.add("Codigo");
-		titulosList.add("Color");
-		
-				
-		//se asignan las columnas al arreglo para enviarse al momento de construir la tabla
-		String titulos[] = new String[titulosList.size()];
-		for (int i = 0; i < titulos.length; i++) {
-			titulos[i]=titulosList.get(i);
-		}*/
-		/*obtenemos los datos de la lista y los guardamos en la matriz
-		 * que luego se manda a construir la tabla
-		 */
-	/*	Object[][] data =obtenerMatrizDatos(titulosList);
-		construirTabla(titulos,data);
-		
-	}*/
-    
-    /**
-	 * Permite simular el llenado de personas en una lista
-	 * que posteriormente alimentará la tabla
-	 * @return
-	 */
-	/*private ArrayList<Producto> consultarListaProductos() {
-		ArrayList<Producto> lista=new ArrayList<>();
-		
-		lista.add(new Producto("Laptop Dell",10000,30,"EL12020","Negro"));
-		lista.add(new Producto("SmartPhone Samsung",5000,10,"ES12020","Blanco"));
-		lista.add(new Producto("SmartPhone Huawei",15000,40,"ES22020","Gris"));
-		lista.add(new Producto("Tablet LG",12000,10,"ET12020","Negro"));
-		lista.add(new Producto("Laptop Apple",25000,20,"EL22020","Blanco"));
-		lista.add(new Producto("Consola Xbox",8000,40,"EX12020","Negro"));
-		lista.add(new Producto("SmartPhone Xiaomi",10,13000,"ES32020","Gold"));
-		
-		return lista;
-	}
-        
-        private Object[][] obtenerMatrizDatos(ArrayList<String> titulosList) {*/
-		
-		/*se crea la matriz donde las filas son dinamicas pues corresponde
-		 * a todos los usuarios, mientras que las columnas son estaticas
-		 * correspondiendo a las columnas definidas por defecto
-		 */
-		/*String informacion[][] = new String[listaProductos.size()][titulosList.size()];
-                
-		
-		for (int x = 0; x < informacion.length; x++) {
-			
-			informacion[x][Utilidades.CODIGO] = listaProductos.get(x).getCodigo();
-			informacion[x][Utilidades.NOMBRE] = listaProductos.get(x).getNombre();
-			informacion[x][Utilidades.PRECIO] = listaProductos.get(x).getPrecio()+"";
-			informacion[x][Utilidades.COLOR] = listaProductos.get(x).getColor();
-			informacion[x][Utilidades.STOCK] = listaProductos.get(x).getStock()+"";*/
-			
-			//se asignan las plabras clave para que en la clase GestionCeldas se use para asignar el icono correspondiente
-			/*informacion[x][Utilidades.PERFIL] = "PERFIL";
-			informacion[x][Utilidades.EVENTO] = "EVENTO";*/
-	/*	}
-		
-		return informacion;
-	}*/
 
-        /**
-	 * Con los titulos y la información a mostrar se crea el modelo para 
-	 * poder personalizar la tabla, asignando tamaño de celdas tanto en ancho como en alto
-	 * así como los tipos de datos que va a poder soportar.
-	 * @param titulos
-	 * @param data
-	 */
-	/*private void construirTabla(String[] titulos, Object[][] data) {
-		modelo=new ModeloTabla(data, titulos);
-		//se asigna el modelo a la tabla
-		tablaProductos.setModel(modelo);
-		
-		filasTabla=tablaProductos.getRowCount();
-		columnasTabla=tablaProductos.getColumnCount();
-		
-		//se asigna el tipo de dato que tendrán las celdas de cada columna definida respectivamente para validar su personalización
-		tablaProductos.getColumnModel().getColumn(Utilidades.CODIGO).setCellRenderer(new GestionCeldas("texto"));
-		tablaProductos.getColumnModel().getColumn(Utilidades.NOMBRE).setCellRenderer(new GestionCeldas("texto"));
-		tablaProductos.getColumnModel().getColumn(Utilidades.PRECIO).setCellRenderer(new GestionCeldas("numerico"));
-		tablaProductos.getColumnModel().getColumn(Utilidades.COLOR).setCellRenderer(new GestionCeldas("texto"));
-		tablaProductos.getColumnModel().getColumn(Utilidades.STOCK).setCellRenderer(new GestionCeldas("numerico"));*/
-		
-		//se recorre y asigna el resto de celdas que serian las que almacenen datos de tipo texto
-		/*for (int i = 0; i < titulos.length-7; i++) {//se resta 7 porque las ultimas 7 columnas se definen arriba
-			System.out.println(i);
-			tablaProductos.getColumnModel().getColumn(i).setCellRenderer(new GestionCeldas("texto"));
-		}*/
-		
-	/*	tablaProductos.getTableHeader().setReorderingAllowed(false);
-		tablaProductos.setRowHeight(25);//tamaño de las celdas
-		tablaProductos.setGridColor(new java.awt.Color(0, 0, 0)); 
-		//Se define el tamaño de largo para cada columna y su contenido
-		tablaProductos.getColumnModel().getColumn(Utilidades.CODIGO).setPreferredWidth(130);//documento
-		tablaProductos.getColumnModel().getColumn(Utilidades.NOMBRE).setPreferredWidth(380);//nombre
-		tablaProductos.getColumnModel().getColumn(Utilidades.PRECIO).setPreferredWidth(350);//direccion
-		tablaProductos.getColumnModel().getColumn(Utilidades.COLOR).setPreferredWidth(130);//telefono
-		tablaProductos.getColumnModel().getColumn(Utilidades.STOCK).setPreferredWidth(280);//profesion*/
-		
-		/*tablaProductos.getColumnModel().getColumn(Utilidades.PERFIL).setPreferredWidth(30);//accion perfil
-		tablaProductos.getColumnModel().getColumn(Utilidades.EVENTO).setPreferredWidth(30);//accion evento*/
-		
-		//personaliza el encabezado
-	/*	JTableHeader jtableHeader = tablaProductos.getTableHeader();
-	    jtableHeader.setDefaultRenderer(new GestionEncabezadoTabla());
-	    tablaProductos.setTableHeader(jtableHeader);
-	    
-	    //se asigna la tabla al scrollPane
-	    scroll.setViewportView(tablaProductos);
-
-
-	}*/ 
-    
-    private JPanel panelPrincipal,panelTrans,panelOpciones;
+    //Panel puntero dice cual es el panel que se ve actualmente
+    private JPanel panelPrincipal,panelTabla,panelOpciones, panelPuntero;
     private JButton btnPerfil,btnTienda,btnMenu,btnEquis;
     private ImageIcon usuario, icono,equis;
     private JLabel labelUsuario, labelNombre,labelCorreo,labelEquis,labelEquis2;
@@ -338,7 +251,9 @@ public class Ventana extends JFrame {
     ModeloTabla modelo;//modelo definido en la clase ModeloTabla
     private int filasTabla;
     private int columnasTabla;
-    private JTable tablaProductos;
-   
+    private JTable tablaProductos, miTabla;
+    private TableModel miModelo;
+    Rectangle medidasPanel = new Rectangle(1500,800);
+    private JLabelRound label; 
     int x;
 }
