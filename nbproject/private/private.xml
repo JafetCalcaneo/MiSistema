@@ -3,13 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Vistas/GestionCeldas.java</file>
-            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Vistas/Ventana.java</file>
-            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Vistas/VentanaTabla.java</file>
+            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Pruebas/VentanaMarco.java</file>
+            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Utilidades/GestionEncabezadoTabla.java</file>
+            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Vistas/Tabla.java</file>
+            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Utilidades/ModeloTabla.java</file>
             <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/misistema/MiSistema.java</file>
-            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Vistas/GestionEncabezadoTabla.java</file>
+            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Utilidades/GestionCeldas.java</file>
             <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Vistas/Producto.java</file>
-            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Vistas/ModeloTabla.java</file>
+            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Pruebas/ModeloTabla.java</file>
+            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Pruebas/Celdas.java</file>
+            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Vistas/Panel.java</file>
+            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Vistas/Ventana.java</file>
+            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Vistas/Tienda.java</file>
+            <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Utilidades/Celdas.java</file>
             <file>file:/C:/Users/jafet/ProyectosNeatBeans/MiSistema/src/Vistas/Utilidades.java</file>
         </group>
     </open-files>

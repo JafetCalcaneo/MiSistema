@@ -1,5 +1,5 @@
 
-package Utilidades;
+package Pruebas;
 
 import javax.swing.table.DefaultTableModel;
 
