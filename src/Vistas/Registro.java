@@ -1,4 +1,5 @@
 package Vistas;
+import SQL.Cliente;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +11,9 @@ import SQL.Usuario;
 public class Registro extends JFrame{
     
     public Registro(){
-        
         iniciarComponentes();
+        this.nombre = us.getNombre();
+        this.correo = us.getCorreo();
     
     }
     
@@ -71,12 +73,13 @@ public class Registro extends JFrame{
                 us.setNombre(txtNombre.getText());
                 us.setContraseña(txtContraseña.getText());
                 String query = "select nombre, correo, contraseña from clientes where nombre=? and correo=? and contraseña=?";
-              try{
-                    
+              try{              
                 
                 if(con.existe(us)){
                     JOptionPane.showMessageDialog(null,"Puedes pasar UwU");
-                    Ventana v = new Ventana();
+                  //  String nombre = us.getNombre(); String correo = us.getCorreo();
+                    //cliente = con.traerInfo(cliente);  <---- ESTE METODO CAUSA CONFLICTO, CUANDO SE ACTIVA NO PERMITE A LA VENTANA SALIR
+                    Ventana v = new Ventana(nombre,correo);
                     v.setVisible(true);
                     v.setSize(1500, 900);
                     v.setLocationRelativeTo(null);
@@ -157,7 +160,9 @@ public class Registro extends JFrame{
                          if(con.existe2(us)){
                              JOptionPane.showMessageDialog(null,"Este usuario ya existe");
                          }else{
-                             con.registrarCliente(us);
+                             //cliente = new Cliente(us.getNombre(),us.getCorreo(),us.getContraseña());
+                             con.registrarCliente(new Cliente(us.getNombre(), us.getCorreo(), us.getContraseña()));
+                             
                              JOptionPane.showMessageDialog(null,"Datos ingresados");
                               }
                        }catch(Exception ex){
@@ -185,8 +190,10 @@ public class Registro extends JFrame{
     private JLabel labelCorreo, labelContraseña, labelNombre, labelInicio;
     private JTextField txtNombre, txtContraseña, txtCorreo;
     private JButton btnInicio, btnRegistro, btnVolverInicio;
+    private String nombre, correo;
     Conexion_bd con = new Conexion_bd();
     Usuario us = new Usuario();
+    Cliente cliente;
 
  
     

@@ -16,8 +16,8 @@ public class Celdas extends DefaultTableCellRenderer{
     @Override
     public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column) {
         Color colorFondo = null;
-        Color colorSeleccion=new Color(234, 128, 252);
-        Color colorFocus=new Color(245, 0, 87);
+        Color colorSeleccion=new Color(111, 55, 68);
+        Color colorFocus=new Color(38, 76, 113);
         
         if (selected) {                
             this.setBackground(colorSeleccion);   
@@ -44,9 +44,8 @@ public class Celdas extends DefaultTableCellRenderer{
         return this;
     }
     
-        private Font normal = new Font( "Verdana",Font.PLAIN ,12 );
+    private Font normal = new Font( "Verdana",Font.PLAIN ,12 );
 	private Font bold = new Font( "Verdana",Font.BOLD ,12 );
-	
 	private JLabel label = new JLabel();
         
         

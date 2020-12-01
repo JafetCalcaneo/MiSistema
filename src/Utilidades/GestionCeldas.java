@@ -1,5 +1,5 @@
 
-package Vistas;
+/*package Utilidades;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author CHENAO
  *
  */
-public class GestionCeldas extends DefaultTableCellRenderer{
+/*public class GestionCeldas extends DefaultTableCellRenderer{
 	
 	private String tipo="text";
 
@@ -41,7 +41,7 @@ public class GestionCeldas extends DefaultTableCellRenderer{
 	 * Constructor explicito con el tipo de dato que tendrá la celda
 	 * @param tipo
 	 */
-	public GestionCeldas(String tipo){
+/*	public GestionCeldas(String tipo){
 		this.tipo=tipo;
 	}
 
@@ -49,21 +49,21 @@ public class GestionCeldas extends DefaultTableCellRenderer{
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
 		
 		/*
-		 * Este metodo controla toda la tabla, podemos obtener el valor que contiene
-		 * definir que celda está seleccionada, la fila y columna al tener el foco en ella.
-		 * 
-		 * cada evento sobre la tabla invocará a este metodo
+	/*	 * Este metodo controla toda la tabla, podemos obtener el valor que contiene
+	//	 * definir que celda está seleccionada, la fila y columna al tener el foco en ella.
+	//	 * 
+	//	 * cada evento sobre la tabla invocará a este metodo
 		 */
 		
 		//definimos colores por defecto
-        Color colorFondo = null;
+      /*  Color colorFondo = null;
         Color colorFondoPorDefecto=new Color( 192, 192, 192);
         Color colorFondoSeleccion=new Color( 140, 140 , 140);
     	
         /*
-         * Si la celda del evento es la seleccionada se asigna el fondo por defecto para la selección
+     //    * Si la celda del evento es la seleccionada se asigna el fondo por defecto para la selección
          */
-        if (selected) {                
+    /*    if (selected) {                
             this.setBackground(colorFondoPorDefecto );   
         }
         else
@@ -76,7 +76,7 @@ public class GestionCeldas extends DefaultTableCellRenderer{
          * Se definen los tipos de datos que contendrán las celdas basado en la instancia que
          * se hace en la ventana de la tabla al momento de construirla
          */
-        if( tipo.equals("texto"))
+    /*    if( tipo.equals("texto"))
         {
         	//si es tipo texto define el color de fondo del texto y de la celda así como la alineación
             if (focused) {
@@ -136,4 +136,4 @@ public class GestionCeldas extends DefaultTableCellRenderer{
 	
 	
 	
-}
+}*/

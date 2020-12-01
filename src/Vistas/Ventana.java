@@ -8,15 +8,18 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
-import Vistas.Producto;
+import Utilidades.Producto;
 import javax.swing.table.TableModel;
 import Utilidades.JLabelRound;
 import Vistas.Panel;
+import javafx.scene.control.ScrollBar;
 import javax.swing.JScrollPane;
 
 public class Ventana extends JFrame {
    
-    public Ventana(){
+    public Ventana(String name, String correo){
+        this.name = name;
+        this.correo = correo;
          barraMenu();
         iniciarComponentes();
        // panelOpciones();
@@ -25,45 +28,11 @@ public class Ventana extends JFrame {
     }
     
     public void iniciarComponentes(){
+        panel = "perfil";
+        
         panelPerfil();
         
-     /*  panelPrincipal = new JPanel();
-        panelPrincipal.setLayout(null);
-        panelPrincipal.setBounds(medidasPanel );
-        panelPrincipal.setBackground(new Color(255, 255, 255));
-        this.add(panelPrincipal);
-                   
-        labelUsuario = new JLabel();
-        labelUsuario.setBounds(600, 100, 300, 300);
-        
-        label = new JLabelRound();
-        label.setBounds(600, 100, 300, 300);
-               
-        
-        usuario = new ImageIcon(getClass().getResource("/Recursos/Lucia.jpeg"));
-        icono = new ImageIcon(usuario.getImage().getScaledInstance(label.getWidth(), label.getHeight(),Image.SCALE_DEFAULT));
-        label.setIcon(icono);
-        panelPrincipal.add(label);
-        
-        labelNombre = new JLabel("Nombre:");
-        labelNombre.setBounds(550, 500, 180, 30);   
-        labelNombre.setFont(new Font("Arial",1,20));
-        labelNombre.setForeground(Color.BLACK);
-        panelPrincipal.add(labelNombre);
-        
-        labelCorreo = new JLabel("Correo:");
-        labelCorreo.setBounds(780, 500, 180, 30);
-        labelCorreo.setFont(new Font("Arial",1,20));
-        labelCorreo.setForeground(Color.BLACK);
-        panelPrincipal.add(labelCorreo);
-        
-         panelPuntero = panelPrincipal;*/
-       /* labelEquis2 = new JLabel("Hey");
-        labelEquis2.setBounds(240,10,30,30);
-        equis = new ImageIcon(getClass().getResource("/Recursos/Equis.png"));
-        icono = new ImageIcon(equis.getImage().getScaledInstance(labelEquis2.getWidth(), labelEquis2.getHeight(), Image.SCALE_DEFAULT));
-        labelEquis2.setIcon(icono);
-        panelPrincipal.add(labelEquis2);    */
+      
           
     }
     
@@ -71,21 +40,53 @@ public class Ventana extends JFrame {
         panelPerfil = new Panel();
         panelPerfil.setBounds(new Rectangle(1500,900));
         panelPerfil.setLayout(null);
-        panelPerfil.setBackground(Color.WHITE);
-        panelPerfil.añadirImagenRedonda(600, 100,new Rectangle(300,300), Panel.LUCIA);
-      //  panelPerfil.texto(400, 450, new Rectangle(150,30), "Correo:", "Segoe Print",Font.BOLD , 30);
+        panelPerfil.setBackground(new Color(0, 172, 193));
+        panelPerfil.añadirImagenRedonda(310, 50,new Rectangle(200,200), Panel.PADORU);
+       panelPerfil.texto(515, 100, new Rectangle(150,30), "Nombre", "Candara",Font.ITALIC , 21);
+        panelPerfil.texto(515, 122, new Rectangle(150,30), "Jafet", "Candara",Font.PLAIN , 28);
+        panelPerfil.texto(515, 160, new Rectangle(150,30), "Correo", "Candara",Font.ITALIC , 21);
+         panelPerfil.texto(515, 182, new Rectangle(400,30), "jafetcalcaneo2@gmail.com", "Candara",Font.PLAIN , 28);
+        
         this.add(panelPerfil);
+        panelPuntero = panelPerfil;
+      
     }
     
+     private JPanel panelProductos(){
+       panelTabla = new Panel();
+       panelTabla.setBounds(medidasPanel);
+       panelTabla.setLayout(null);
+       panelTabla.setBackground(Color.WHITE);
+       tabla = new Tabla(500,200);
+      // barra2 = new JScrollBar();
+       //barra2.add(tabla);
+       scroll2 = new JScrollPane();
+       scroll2.add(tabla);
+       
+      panelTabla.add(tabla);
+      //panelTabla.add(barra2);
+       panelTabla.add(panelOpciones);
+       panelTabla.setVisible(true);
+       
+        this.add(panelTabla);
+        return panelTabla;
+        
+       
+    }
     public JPanel panelOpciones(){
        
         panelOpciones = new JPanel();
+       //  panelProductos().add(panelOpciones);
         panelOpciones.setLayout(null);
         panelOpciones.setBounds(0,0,290,900);
-        panelOpciones.setBackground(new Color(224,255,255));
+        panelOpciones.setBackground(new Color(0, 96, 100));
         panelPerfil.add(panelOpciones);
-        panelOpciones.setVisible(false);
-       // panelPuntero.add(panelOpciones);
+      //  panelTabla.add(panelOpciones);
+        
+    //    panelTabla.add(panelOpciones);
+        panelOpciones.setVisible(true);
+        
+      
         
         btnPerfil = new JButton("Perfil");
         btnPerfil.setBounds(20,60,250,45);
@@ -94,6 +95,7 @@ public class Ventana extends JFrame {
         btnPerfil.setIcon(icono);
         btnPerfil.setHorizontalTextPosition(4);
         btnPerfil.setFont(new Font("Courier New",1,20));
+        btnPerfil.setForeground(Color.WHITE);
         btnPerfil.setVisible(false);
         panelOpciones.add(btnPerfil);
               
@@ -104,6 +106,7 @@ public class Ventana extends JFrame {
         btnTienda.setIcon(icono);
         btnTienda.setHorizontalTextPosition(4);
         btnTienda.setFont(new Font("Courier New",1,20));
+        btnTienda.setForeground(Color.WHITE);
         btnTienda.setVisible(false);
         panelOpciones.add(btnTienda);
                 
@@ -115,34 +118,60 @@ public class Ventana extends JFrame {
         icono = new ImageIcon(equis.getImage().getScaledInstance(btnEquis.getWidth(), btnEquis.getHeight(), Image.SCALE_DEFAULT));
         btnEquis.setIcon(icono);
         panelOpciones.add(btnEquis);
-        
+       //  panelProductos().add(panelOpciones);
        
+        btnPedidos = new JButton("Pedidos");
+        btnPedidos.setBounds(20,160,250,45);
+        btnPedidos.setContentAreaFilled(false);
+        btnPedidos.setHorizontalTextPosition(4);
+        icono = new ImageIcon(getClass().getResource("/Recursos/Pedidos.png"));
+        btnPedidos.setFont(new Font("Courier New",1,20));
+        btnPedidos.setForeground(Color.WHITE);
+        btnPedidos.setIcon(icono);
+        panelOpciones.add(btnPedidos);
         
-        x = 290;
+        btnEstadistica = new JButton("Estadistica");
+        btnEstadistica.setBounds(20,220,250,45);
+        btnEstadistica.setContentAreaFilled(false);
+        btnEstadistica.setHorizontalTextPosition(4);
+        icono = new ImageIcon(getClass().getResource("/Recursos/Estadistica.png"));
+        btnEstadistica.setFont(new Font("Courier New",1,20));
+        btnEstadistica.setForeground(Color.WHITE);
+        btnEstadistica.setIcon(icono);
+        panelOpciones.add(btnEstadistica);
+       
+        btnCalendario = new JButton("Calendario");
+        btnCalendario.setBounds(20,280,250,45);
+        btnCalendario.setContentAreaFilled(false);
+        btnCalendario.setHorizontalTextPosition(4);
+        icono = new ImageIcon(getClass().getResource("/Recursos/Calendario.png"));
+        btnCalendario.setFont(new Font("Courier New",1,20));
+        btnCalendario.setForeground(Color.WHITE);
+        btnCalendario.setIcon(icono);
+        panelOpciones.add(btnCalendario);
+        
+        btnPremios = new JButton("Premios");
+        btnPremios.setBounds(20,340,250,45);
+        btnPremios.setContentAreaFilled(false);
+        btnPremios.setHorizontalTextPosition(4);
+        icono = new ImageIcon(getClass().getResource("/Recursos/Recompensas.png"));
+        btnPremios.setFont(new Font("Courier New",1,20));
+        btnPremios.setForeground(Color.WHITE);
+        btnPremios.setIcon(icono);
+        panelOpciones.add(btnPremios);
+       
+        btnPerfil.addActionListener(new ActionListener(){
+        public void actionPerformed(ActionEvent e){
+            panelPerfil.setVisible(true);
+            panel = "Perfil";
+            panelProductos();
+        }
+    });
+     
         btnEquis.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 
-              if(x==290){
-                //  panelOpciones().show();
-                  panelOpciones.setSize(x,900);
-                   Thread th = new Thread(){
-                    public void run(){
-                        try{
-                            for(int i = 290; i>=0; i--){
-                                Thread.sleep(4/5);
-                                panelOpciones.setSize(i, 900);
-                                //btnPerfil.setVisible(false);
-                                //btnTienda.setVisible(false);
-                                
-                                System.out.println(i);
-                            }
-                        }catch(Exception ex){
-                            JOptionPane.showMessageDialog(null,ex);
-                        }
-                    }  
-                  };th.start(); 
-                  x=0;
-              }
+             cerrarMenu();
                 
             }
             
@@ -150,23 +179,23 @@ public class Ventana extends JFrame {
         
           btnTienda.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-               // panelPuntero = panelTabla;
+                             
                 panelPerfil.setVisible(false);
-               
+                panel = "Tienda";
                 panelProductos();
-                 panelTabla.setVisible(true);
-                 tabla.setVisible(true);
+                
+                
+                 
+             
                 
             }
             
         }); 
-        
-
-        
               
-        //ImageIcon icono = new ImageIcon(home.getImage().getScaledInstance(jLabel2.getWidth(),jLabel2.getHeight(),Image.SCALE_DEFAULT));
         return panelOpciones;
     }
+    
+    
     
     public void barraMenu(){
         menu = new JMenu("Algo xd");
@@ -191,12 +220,27 @@ public class Ventana extends JFrame {
         btnMenu.setRolloverIcon(icono);
         barra.add(btnMenu);
         
-        
-        
-         x = 0;
+            
          btnMenu.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-              if(x==0){
+                switch(panel){
+                    case "Perfil": abrirMenu();panelPerfil();  break;
+                    case "Tienda": abrirMenu(); panelProductos(); ;break;
+                    default: abrirMenu();
+                }
+           
+                
+            }
+            
+        }); 
+       
+               
+    }
+    
+    public int abrirMenu(){
+        
+         if(x==0){
+              
                   panelOpciones().show();
                   panelOpciones.setSize(x,900);
                    Thread th = new Thread(){
@@ -205,7 +249,7 @@ public class Ventana extends JFrame {
                             for(int i = 0; i<=x; i++){
                                 Thread.sleep(4/5);
                                 panelOpciones.setSize(i, 900);
-                              //  panelPerfil.add(panelOpciones);
+                                
                                 btnPerfil.setVisible(true);
                                 btnTienda.setVisible(true);
                                 panelOpciones.setVisible(true);
@@ -218,34 +262,43 @@ public class Ventana extends JFrame {
                   };th.start(); 
                   x=290;
               }
-                
-            }
-            
-        }); 
-       
-               
+         System.out.println("Abrir menu"+x);
+         return x;
     }
     
-    private void panelProductos(){
-       panelTabla = new Panel();
-       panelTabla.setBounds(medidasPanel);
-       panelTabla.setLayout(null);
-       panelTabla.setBackground(Color.BLUE);
-       tabla = new Tabla(500,200);
-       scroll2 = new JScrollPane();
-       scroll2.add(tabla);
-       panelTabla.add(tabla);
-       
-        this.add(panelTabla);
+    public int cerrarMenu(){
         
-        
-       
+        if(x==290){
+                //  panelOpciones().show();
+                  panelOpciones.setSize(x,900);
+                   Thread th = new Thread(){
+                    public void run(){
+                        try{
+                            for(int i = 290; i>=0; i--){
+                                Thread.sleep(4/5);
+                                panelOpciones.setSize(i, 900);
+                                
+                                //btnTienda.setVisible(false);
+                                 System.out.println(i);
+                            }
+                            
+                        }catch(Exception ex){
+                            JOptionPane.showMessageDialog(null,ex);
+                        }
+                    }  
+                  };th.start(); 
+                  x=0;
+              }
+        System.out.println("Cerrar menu "+x);
+        return x;
     }
+    
+   
     
 
     
-    private JPanel panelPrincipal,panelOpciones, panelPuntero;
-    private JButton btnPerfil,btnTienda,btnMenu,btnEquis;
+    private JPanel panelPrincipal,panelOpciones, panelPuntero= null;
+    private JButton btnPerfil,btnTienda,btnMenu,btnEquis, btnPedidos, btnEstadistica, btnCalendario, btnPremios;
     private ImageIcon usuario, icono,equis;
     private JLabel labelUsuario, labelNombre,labelCorreo,labelEquis,labelEquis2;
     private JMenuBar barra;
@@ -264,5 +317,8 @@ public class Ventana extends JFrame {
     private Panel panelPerfil, panelTabla;
     private Tabla tabla;
     private JScrollPane scroll2;
-    int x;
+    private static String panel = "";
+    private JScrollBar barra2;
+    private String name, correo;
+    int x=0, y;
 }

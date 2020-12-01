@@ -1,19 +1,20 @@
-package Vistas;
+package Utilidades;
 
 public class Producto {
-	
-	private String nombre;
+        private static int contadorProductos;
+	private final int idProducto;
+        private String nombre;
         private double precio;
         private int stock;
         private String codigo;
         private String color;
 	
-	public Producto(){
-		
+	private Producto(){
+		this.idProducto = ++Producto.contadorProductos;
 	}
 	
 	public Producto(String nombre, double precio, int stock, String codigo, String color) {
-		super();
+		this();
 		this.stock = stock;
                 this.codigo = codigo;
                 this.color = color;
@@ -21,7 +22,10 @@ public class Producto {
                 this.nombre = nombre;
 	}
 	
-	
+	public int getIdProducto(){
+            return idProducto;
+        }
+        
 	public void setNombre(String nombre){
             this.nombre = nombre;
         }
@@ -56,5 +60,10 @@ public class Producto {
         public String getColor(){
             return this.color;
         }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "idProducto=" + idProducto + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + ", codigo=" + codigo + ", color=" + color + '}';
+    }
 
 }

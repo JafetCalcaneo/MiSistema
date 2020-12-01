@@ -1,5 +1,5 @@
 
-package Vistas;
+package Utilidades;
 
 import java.awt.Color;
 import java.awt.Component;

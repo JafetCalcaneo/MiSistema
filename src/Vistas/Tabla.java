@@ -12,6 +12,11 @@ import java.awt.Rectangle;
 import javax.swing.JPanel;
 import Utilidades.Celdas;
 import Utilidades.ModeloTabla;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import SQL.Conexion_bd;
+import java.sql.Statement;
 
 
 
@@ -36,27 +41,43 @@ public class Tabla extends JTable{
     }
     
     private void obtenerTitulos(){
-        String titulos[] = {"ID","Nombre","Numero"};
-        
-        construirTabla(titulos,obtenerDatos(titulos));
+        String titulos[] = {"ID","Codigo","Nombre","Precio","Stock","Color"};
+        miModelo = new ModeloTabla(obtenerDatos(titulos),titulos);
+        construirTabla();
         
     }
     
-    private Object[][] obtenerDatos(String [] titulos){
-        //String informacion[][] = new String[listaPersonas.size()][titulosList.size()];
-         String informacion[][] = new String[2][titulos.length];
-         informacion[0][0] = "1";
-         informacion[0][1] = "Jafet";
-         informacion[0][2] = "9933209220";
-         informacion[1][0] = "2";
-         informacion[1][1] = "Alejandro";
-         informacion[1][2] = "12345678";
+    private Object[][] obtenerDatos(String titulos[]){
+ 
+          Conexion_bd con = new Conexion_bd();      int numR = con.NumRegistros();
+          String query = "SELECT*FROM Productos";   
+          System.out.println("Num registros: "+numR);
+          Object registros[][] = new Object[numR][titulos.length];
+         int c =0;
          
-         return informacion;
+         try{ 
+              Statement statement = con.conectar().createStatement();
+              ResultSet set = statement.executeQuery(query);
+              
+        while(set.next()){
+            for (int i = 0; i < titulos.length; i++) {
+                registros[c][i] = set.getString(i+1);
+                System.out.println(registros[c][i]);    
+            }
+             System.out.println("Vueltas while: "+c);
+            ++c;           
+            }
+         }catch(Exception e){
+            System.out.println(e);      
+         }
+         
+         return registros;
     }
-    private void construirTabla(String[] titulos, Object[][] datos){
-        System.out.println(datos[0][0]);
-        miModelo = new ModeloTabla(datos,titulos);
+    
+    
+    private void construirTabla(){
+        //System.out.println(datos[0][0]);
+      //  miModelo = new ModeloTabla(datos,titulos);
         this.setModel(miModelo);
         
         this.getColumnModel().getColumn(0).setCellRenderer(new Celdas());

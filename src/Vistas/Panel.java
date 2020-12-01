@@ -59,6 +59,8 @@ public class Panel extends JPanel{
     
     public static final String LUCIA = "/Recursos/Lucia.jpeg";
     public static final String EMILY = "/Recursos/Emily.jpeg";
+    public static final String PADORU = "/Recursos/Padoru.jpg";
+    
     private ImageIcon icono, icono2;
     private JLabel label;
     private JLabelRound labelRound;
