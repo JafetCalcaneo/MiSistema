@@ -35,7 +35,7 @@ public class Tabla extends JTable{
        // Rectangle r = new Rectangle(500,300);
         this.setBounds(new Rectangle(500,300));
         obtenerTitulos();
-        System.out.println("Constructor Tabla");
+      //  System.out.println("Constructor Tabla");
         this.setVisible(true);
         this.setLocation(x, y);
     }
@@ -51,7 +51,7 @@ public class Tabla extends JTable{
  
           Conexion_bd con = new Conexion_bd();      int numR = con.NumRegistros();
           String query = "SELECT*FROM Productos";   
-          System.out.println("Num registros: "+numR);
+        //  System.out.println("Num registros: "+numR);
           Object registros[][] = new Object[numR][titulos.length];
          int c =0;
          
@@ -62,9 +62,9 @@ public class Tabla extends JTable{
         while(set.next()){
             for (int i = 0; i < titulos.length; i++) {
                 registros[c][i] = set.getString(i+1);
-                System.out.println(registros[c][i]);    
+              //  System.out.println(registros[c][i]);    
             }
-             System.out.println("Vueltas while: "+c);
+          //   System.out.println("Vueltas while: "+c);
             ++c;           
             }
          }catch(Exception e){

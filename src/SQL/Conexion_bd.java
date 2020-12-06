@@ -28,7 +28,7 @@ public class Conexion_bd {
             System.out.println("Conexion establecida :D");*/
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conexion = DriverManager.getConnection(URL2, usuario2, contra2);
-            System.out.println("Conectado");
+          //  System.out.println("Conectado");
                     
         }catch(Exception e){
             System.out.println("Error parce D:  \n"+e);

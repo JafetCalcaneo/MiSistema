@@ -24,7 +24,7 @@ public class Ventana extends JFrame {
         iniciarComponentes();
        // panelOpciones();
      //  construirTabla();
-        this.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public void iniciarComponentes(){
@@ -53,26 +53,14 @@ public class Ventana extends JFrame {
     }
     
      private JPanel panelProductos(){
-       panelTabla = new Panel();
-       panelTabla.setBounds(medidasPanel);
-       panelTabla.setLayout(null);
-       panelTabla.setBackground(Color.WHITE);
-       tabla = new Tabla(500,200);
-      // barra2 = new JScrollBar();
-       //barra2.add(tabla);
-       scroll2 = new JScrollPane();
-       scroll2.add(tabla);
-       
-      panelTabla.add(tabla);
-      //panelTabla.add(barra2);
-       panelTabla.add(panelOpciones);
-       panelTabla.setVisible(true);
-       
-        this.add(panelTabla);
-        return panelTabla;
-        
-       
-    }
+         //CREE UN OBJETO PANELPRODUCTOS Y LO TRAIGO AQUI
+         PanelProductos panel = new PanelProductos();
+         panel.add(panelOpciones);
+         panel.setVisible(true);
+         this.add(panel);
+         return panel;
+      }
+     
     public JPanel panelOpciones(){
        
         panelOpciones = new JPanel();
@@ -164,13 +152,14 @@ public class Ventana extends JFrame {
         public void actionPerformed(ActionEvent e){
             panelPerfil.setVisible(true);
             panel = "Perfil";
+            System.out.println(panel);
             panelProductos();
         }
     });
      
         btnEquis.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                
+                System.out.println(panel);  
              cerrarMenu();
                 
             }
@@ -182,6 +171,7 @@ public class Ventana extends JFrame {
                              
                 panelPerfil.setVisible(false);
                 panel = "Tienda";
+                System.out.println(panel);
                 panelProductos();
                 
                 
@@ -228,7 +218,7 @@ public class Ventana extends JFrame {
                     case "Tienda": abrirMenu(); panelProductos(); ;break;
                     default: abrirMenu();
                 }
-           
+                
                 
             }
             
@@ -253,7 +243,7 @@ public class Ventana extends JFrame {
                                 btnPerfil.setVisible(true);
                                 btnTienda.setVisible(true);
                                 panelOpciones.setVisible(true);
-                                System.out.println(i);
+                              //  System.out.println(i);
                             }
                         }catch(Exception ex){
                             JOptionPane.showMessageDialog(null,ex);
@@ -279,7 +269,7 @@ public class Ventana extends JFrame {
                                 panelOpciones.setSize(i, 900);
                                 
                                 //btnTienda.setVisible(false);
-                                 System.out.println(i);
+                              //   System.out.println(i);
                             }
                             
                         }catch(Exception ex){
@@ -306,8 +296,8 @@ public class Ventana extends JFrame {
     private Dimension dimension;
     private Boolean b;
     private JScrollPane scroll;
-    ArrayList<Producto> listaProductos;
-    //ModeloTabla modelo;//modelo definido en la clase ModeloTabla
+  
+    
     private int filasTabla;
     private int columnasTabla;
     private JTable tablaProductos, miTabla;
@@ -320,5 +310,5 @@ public class Ventana extends JFrame {
     private static String panel = "";
     private JScrollBar barra2;
     private String name, correo;
-    int x=0, y;
+    static int x=0, y;
 }

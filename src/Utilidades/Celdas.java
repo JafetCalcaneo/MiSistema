@@ -16,7 +16,7 @@ public class Celdas extends DefaultTableCellRenderer{
     @Override
     public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column) {
         Color colorFondo = null;
-        Color colorSeleccion=new Color(111, 55, 68);
+        Color colorSeleccion=new Color(230, 74, 25);
         Color colorFocus=new Color(38, 76, 113);
         
         if (selected) {                
@@ -38,8 +38,8 @@ public class Celdas extends DefaultTableCellRenderer{
         
          this.setHorizontalAlignment( JLabel.LEFT );
          this.setText( (String) value );
-         this.setBackground( (selected)? colorFondo :Color.WHITE);
-         this.setForeground( (focused)? Color.WHITE :Color.BLACK);
+         this.setBackground( (selected)? colorFondo :new Color(255, 183, 77));
+         this.setForeground( (selected)? Color.WHITE :Color.BLACK);
         
         return this;
     }

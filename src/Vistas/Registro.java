@@ -7,6 +7,8 @@ import javax.swing.*;
 import SQL.Conexion_bd;
 import java.sql.SQLException;
 import SQL.Usuario;
+import Utilidades.BorderRound;
+import java.awt.Color;
 
 public class Registro extends JFrame{
     
@@ -14,15 +16,15 @@ public class Registro extends JFrame{
         iniciarComponentes();
         this.nombre = us.getNombre();
         this.correo = us.getCorreo();
+      //  this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     }
     
     public void iniciarComponentes(){
-        /*Conexion_bd con = new Conexion_bd();
-        con.conectar();*/
-        
+           
         panelInicio = new JPanel();
         panelInicio.setBounds(0,0,600,600);
+        panelInicio.setBackground(new Color(197, 225, 165));
         panelInicio.setLayout(null);
         this.add(panelInicio);
         
@@ -48,9 +50,11 @@ public class Registro extends JFrame{
         
         txtNombre = new JTextField();
         txtNombre.setBounds(90, 175, 300, 30);
+        //txtNombre.setBorder(new BorderRound());
+        txtNombre.setFont(new Font("Corbel",0,25));
         panelInicio.add(txtNombre);
         
-        txtContraseña = new JTextField();
+        txtContraseña = new JPasswordField();
         txtContraseña.setBounds(90,365,300,30);
         panelInicio.add(txtContraseña);
         
@@ -67,6 +71,8 @@ public class Registro extends JFrame{
         
         btnInicio = new JButton("Iniciar sesión");
         btnInicio.setBounds(150,400,150,30);
+        btnInicio.setBackground(new Color(197, 17, 98));
+        btnInicio.setForeground(Color.WHITE);
          btnInicio.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 Usuario us = new Usuario();
@@ -103,7 +109,7 @@ public class Registro extends JFrame{
     }
     
     public void cerrar(){
-        this.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        this.setVisible(false);
     }
 
     
