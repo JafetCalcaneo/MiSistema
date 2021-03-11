@@ -16,6 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import SQL.Conexion_bd;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Statement;
 
 
@@ -23,17 +25,18 @@ import java.sql.Statement;
 public class Tabla extends JTable{
     public Tabla(){
          super();
-         this.setBounds(new Rectangle(500,300));
+         this.setBounds(new Rectangle(800,300));
         obtenerTitulos();
         System.out.println("Constructor Tabla");
         this.setVisible(true);
+        
     }
     public Tabla(int x, int y){
         super();
         this.x = x;
         this.y = y;        
        // Rectangle r = new Rectangle(500,300);
-        this.setBounds(new Rectangle(500,300));
+        this.setBounds(new Rectangle(800,300));
         obtenerTitulos();
       //  System.out.println("Constructor Tabla");
         this.setVisible(true);
@@ -50,7 +53,7 @@ public class Tabla extends JTable{
     private Object[][] obtenerDatos(String titulos[]){
  
           Conexion_bd con = new Conexion_bd();      int numR = con.NumRegistros();
-          String query = "SELECT*FROM Productos";   
+          String query = "EXECUTE SP_CONSULTA_PRODUCTOS";   
         //  System.out.println("Num registros: "+numR);
           Object registros[][] = new Object[numR][titulos.length];
          int c =0;
@@ -93,6 +96,16 @@ public class Tabla extends JTable{
 	this.getColumnModel().getColumn(2).setPreferredWidth(350);//direccio
     }
     
+    private Object[] getDatos(){
+        Object fila[] = new Object [6];
+        
+                    
+       
+        
+        System.out.println(fila[0]+" "+fila[3]);
+        return fila;
+    }
+    
 
     
     private ModeloTabla miModelo;
@@ -100,6 +113,7 @@ public class Tabla extends JTable{
     private JPanel panel;
     private JFrame v2;
     private int x, y;
+    
     
 }
 

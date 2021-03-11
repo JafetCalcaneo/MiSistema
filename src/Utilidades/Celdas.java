@@ -36,7 +36,7 @@ public class Celdas extends DefaultTableCellRenderer{
     			colorFondo= colorSeleccion;
     		}
         
-         this.setHorizontalAlignment( JLabel.LEFT );
+         this.setHorizontalAlignment( JLabel.CENTER );
          this.setText( (String) value );
          this.setBackground( (selected)? colorFondo :new Color(255, 183, 77));
          this.setForeground( (selected)? Color.WHITE :Color.BLACK);

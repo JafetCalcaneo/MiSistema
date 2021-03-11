@@ -23,7 +23,7 @@ import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
        
         Registro r = new Registro();
         r.setVisible(true);
-        r.setSize(490,680);
+      //  r.setSize(490,680);
         r.setLocationRelativeTo(null);
         r.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         

@@ -1,6 +1,7 @@
 package Vistas;
 
 import Pruebas.VentanaMarco;
+import SQL.Usuario;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
-import Utilidades.Producto;
+//import Utilidades.Producto;
 import javax.swing.table.TableModel;
 import Utilidades.JLabelRound;
 import Vistas.Panel;
@@ -17,13 +18,12 @@ import javax.swing.JScrollPane;
 
 public class Ventana extends JFrame {
    
-    public Ventana(String name, String correo){
+    public Ventana(Usuario us){
         this.name = name;
         this.correo = correo;
          barraMenu();
         iniciarComponentes();
-       // panelOpciones();
-     //  construirTabla();
+        this.us = us;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
@@ -54,7 +54,7 @@ public class Ventana extends JFrame {
     
      private JPanel panelProductos(){
          //CREE UN OBJETO PANELPRODUCTOS Y LO TRAIGO AQUI
-         PanelProductos panel = new PanelProductos();
+         PanelProductos panel = new PanelProductos(us);
          panel.add(panelOpciones);
          panel.setVisible(true);
          this.add(panel);
@@ -296,7 +296,7 @@ public class Ventana extends JFrame {
     private Dimension dimension;
     private Boolean b;
     private JScrollPane scroll;
-  
+    private Usuario us;
     
     private int filasTabla;
     private int columnasTabla;

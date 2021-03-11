@@ -7,8 +7,22 @@ public class Cliente extends Usuario {
     private static int contadorClientes;
     private String nombre, apellido, correo, contraseña, telefono, direccion,tarjeta;
     
+    
     private Cliente(){
         this.idCliente = ++contadorClientes;
+    }
+  /*  public Cliente(){
+        this();
+    }*/
+    public Cliente(String nombre, String contra){
+        this();
+        this.nombre = nombre;
+        this.contraseña=contra;
+    }
+    
+    public Cliente(String nombre){
+        this();
+        this.nombre = nombre;
     }
     
     public Cliente(String nombre, String correo, String contraseña){
